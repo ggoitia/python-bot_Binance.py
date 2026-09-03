@@ -1,3 +1,21 @@
+import os
+from threading import Thread
+from flask import Flask
+
+# Servidor de mantenimiento para Render (Mantiene el servicio Free activo)
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "Bot de Binance P2P Activo y Monitoreando 24/7"
+
+def run_http():
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host='0.0.0.0', port=port)
+
+# Iniciar servidor web en segundo plano
+Thread(target=run_http).start()
+
 # Determinar el tipo de operación (BUY / SELL)
 trade_type = order.get('tradeType', '')  # 'BUY' o 'SELL'
 
